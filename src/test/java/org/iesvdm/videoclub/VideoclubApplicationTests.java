@@ -34,4 +34,5 @@ class VideoclubApplicationTests {
                 .build();
         tutorialRepository.save(tutorial);
     }
+
 }
