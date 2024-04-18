@@ -16,8 +16,8 @@ public class Tarjeta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long numero;
     private Date caducidad;
-    @OneToOne
-    @JoinColumn(name = "socio",foreignKey = @ForeignKey(name = "FK_SOCIO"),referencedColumnName = "id")
-    Socio socio;
+//    @OneToOne
+//    @JoinColumn(name = "socio",foreignKey = @ForeignKey(name = "FK_SOCIO"),referencedColumnName = "id")
+//    Socio socio;
 
 }

@@ -11,11 +11,13 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Socio {
     @Id
-    private Long id;
+    private int id;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String dni;
     private String nombre;
     private String apellidos;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "tarjeta",foreignKey = @ForeignKey(name = "FK_TARJETA"),referencedColumnName = "id")
+
     private Tarjeta tarjeta;
 }
