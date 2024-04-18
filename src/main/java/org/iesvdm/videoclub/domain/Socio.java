@@ -17,7 +17,6 @@ public class Socio {
     private String nombre;
     private String apellidos;
     @OneToOne(cascade = CascadeType.DETACH)
-    @JoinColumn(name = "tarjeta",foreignKey = @ForeignKey(name = "FK_TARJETA"),referencedColumnName = "id")
 
     private Tarjeta tarjeta;
 }
