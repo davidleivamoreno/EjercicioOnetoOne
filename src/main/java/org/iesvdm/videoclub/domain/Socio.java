@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Socio {
     @Id
-    private int id;
+    private int  id;
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String dni;
     private String nombre;
