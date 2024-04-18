@@ -17,6 +17,5 @@ public class Socio {
     private String nombre;
     private String apellidos;
     @OneToOne(cascade = CascadeType.REMOVE)
-
     private Tarjeta tarjeta;
 }
