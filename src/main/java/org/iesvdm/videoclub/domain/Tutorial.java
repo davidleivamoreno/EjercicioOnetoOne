@@ -1,17 +1,18 @@
 package org.iesvdm.videoclub.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(
         name = "tutorial",schema = "videoclub_jpa",indexes = {@Index(name = "index_titulo", columnList = "titulo", unique = false)}
@@ -24,6 +25,7 @@ import java.util.List;
 )*/
 public class Tutorial {
     @Id
+    @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_tuto")
     private long id;
@@ -33,9 +35,20 @@ public class Tutorial {
     private String descripcion;
 
     private boolean publicado;
-    @OneToMany(mappedBy = "tutorial",fetch = FetchType.LAZY)
-            @OnDelete(action = OnDeleteAction.CASCADE)
-    List<Comentario> comentariosList;
+    @OnDelete(action = OnDeleteAction.CASCADE)
 
+    @OneToMany(mappedBy = "tutorial",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+
+    private Set<Comentario> comentarios;
+    public Tutorial addComentario(Comentario comentario){
+    comentario.setTutorial(this);
+    this.addComentario(comentario);
+    return this;
+    }
+    public Tutorial removeComentario(Comentario comentario){
+        this.comentarios.remove(comentario);
+        comentario.setTutorial(this);
+        return this;
+    }
 
 }
